@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9188f8b557db5f946b05dde953e5bf41, type: 3}
+  m_Name: NormalZone
+  m_EditorClassIdentifier: 
+  zoneCondition:
+    rid: 4934222622130962435
+  priorty: 0
+  isIncreaseRewardAmount: 1
+  specialType: 0
+  specialSpinReward: []
+  zoneName: SPIN
+  zoneIcon: {fileID: 21300000, guid: b7238706fdb696a40980bedd8dfa450d, type: 3}
+  zoneIndicatorIcon: {fileID: 21300000, guid: d9677ba2d681ecf4ab36a8b9bc115e93, type: 3}
+  zoneTopIndicatorIcon: {fileID: 21300000, guid: 9d6bcbcc8dbdb754dbe01607ddac57b3, type: 3}
+  zoneColor: {r: 0.57254905, g: 0.33333334, b: 0.105882354, a: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 4934222622130962435
+      type: {class: TrueZoneCondition, ns: , asm: Assembly-CSharp}
+      data: 

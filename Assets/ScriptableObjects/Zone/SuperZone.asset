@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9188f8b557db5f946b05dde953e5bf41, type: 3}
+  m_Name: SuperZone
+  m_EditorClassIdentifier: 
+  zoneCondition:
+    rid: 4934222622130962433
+  priorty: 500
+  isIncreaseRewardAmount: 0
+  isLeave: 1
+  specialType: 2
+  specialSpinReward:
+  - rid: 4934222622130962446
+  - rid: 4934222622130962447
+  - rid: 4934222622130962451
+  - rid: 4934222622130962452
+  - rid: 4934222622130962453
+  - rid: 4934222622130962454
+  - rid: 4934222622130962464
+  - rid: 4934222622130962465
+  - rid: 4934222622130962466
+  - rid: 4934222622130962467
+  - rid: 4934222622130962468
+  - rid: 4934222622130962469
+  zoneName: SUPER SPIN
+  zoneIcon: {fileID: 21300000, guid: 157388018e406554daf866521829ed84, type: 3}
+  zoneIndicatorIcon: {fileID: 21300000, guid: e0b96b22e834aaf45a952cbb3d3cb3bd, type: 3}
+  zoneTopIndicatorIcon: {fileID: 21300000, guid: 1e2443f75793f144db2c6d8236753a43, type: 3}
+  zoneColor: {r: 0.86666673, g: 0.67058825, b: 0.29803923, a: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 4934222622130962433
+      type: {class: ModuloZoneCondition, ns: , asm: Assembly-CSharp}
+      data:
+        divisor: 30
+    - rid: 4934222622130962446
+      type: {class: SpecialWeaponSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        weaponReward: 0
+        amount: 15
+    - rid: 4934222622130962447
+      type: {class: SpecialWeaponSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        weaponReward: 1
+        amount: 10
+    - rid: 4934222622130962451
+      type: {class: SpecialWeaponSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        weaponReward: 2
+        amount: 10
+    - rid: 4934222622130962452
+      type: {class: SpecialWeaponSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        weaponReward: 3
+        amount: 5
+    - rid: 4934222622130962453
+      type: {class: SpecialWeaponSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        weaponReward: 4
+        amount: 5
+    - rid: 4934222622130962454
+      type: {class: SpecialWeaponSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        weaponReward: 5
+        amount: 5
+    - rid: 4934222622130962464
+      type: {class: SpecialCaseSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        caseReward: 0
+        amount: 6
+    - rid: 4934222622130962465
+      type: {class: SpecialCaseSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        caseReward: 1
+        amount: 2
+    - rid: 4934222622130962466
+      type: {class: SpecialCaseSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        caseReward: 2
+        amount: 4
+    - rid: 4934222622130962467
+      type: {class: SpecialCaseSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        caseReward: 3
+        amount: 6
+    - rid: 4934222622130962468
+      type: {class: SpecialCaseSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        caseReward: 4
+        amount: 4
+    - rid: 4934222622130962469
+      type: {class: SpecialCaseSpinReward, ns: , asm: Assembly-CSharp}
+      data:
+        caseReward: 5
+        amount: 2

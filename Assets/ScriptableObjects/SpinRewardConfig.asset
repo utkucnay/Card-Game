@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e5ac809b5220043b4652e646c913d2, type: 3}
+  m_Name: SpinRewardConfig
+  m_EditorClassIdentifier: 
+  rewards:
+  - rewardCurrency: 0
+    rewardAmount: 30
+    additionTurnAmount: 20
+  - rewardCurrency: 1
+    rewardAmount: 2000
+    additionTurnAmount: 1000
+  - rewardCurrency: 2
+    rewardAmount: 10
+    additionTurnAmount: 5
+  - rewardCurrency: 3
+    rewardAmount: 15
+    additionTurnAmount: 5
+  - rewardCurrency: 4
+    rewardAmount: 10
+    additionTurnAmount: 5
+  - rewardCurrency: 5
+    rewardAmount: 20
+    additionTurnAmount: 5
+  - rewardCurrency: 6
+    rewardAmount: 10
+    additionTurnAmount: 5
+  - rewardCurrency: 7
+    rewardAmount: 20
+    additionTurnAmount: 5
+  - rewardCurrency: 8
+    rewardAmount: 10
+    additionTurnAmount: 5
+  - rewardCurrency: 9
+    rewardAmount: 20
+    additionTurnAmount: 5
+  - rewardCurrency: 10
+    rewardAmount: 5
+    additionTurnAmount: 3
+  - rewardCurrency: 11
+    rewardAmount: 10
+    additionTurnAmount: 3
+  - rewardCurrency: 12
+    rewardAmount: 8
+    additionTurnAmount: 3

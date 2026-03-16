@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f675c868650ab64eb795c0129ae519e, type: 3}
+  m_Name: CurrencyConfig
+  m_EditorClassIdentifier: 
+  currencies:
+  - currency: 0
+    icon: {fileID: 21300000, guid: 305b628ae2ef3ac4f9b88565688f589d, type: 3}
+  - currency: 1
+    icon: {fileID: 21300000, guid: a36e78172b80bd34d8ac233a67aa0c1e, type: 3}
+  - currency: 2
+    icon: {fileID: 21300000, guid: b01e1608752678c479ef28465d1d2351, type: 3}
+  - currency: 3
+    icon: {fileID: 21300000, guid: 304203f6eb5fc114bb2f0e902b210528, type: 3}
+  - currency: 4
+    icon: {fileID: 21300000, guid: ad0e5748b74b738438f25c0ab68a714f, type: 3}
+  - currency: 5
+    icon: {fileID: 21300000, guid: 52151638d7f8eb84b887f4751dc51409, type: 3}
+  - currency: 6
+    icon: {fileID: 21300000, guid: bd8a7ad8d963990409c99ff24125893e, type: 3}
+  - currency: 7
+    icon: {fileID: 21300000, guid: 95417bb0648ff0b47a47a8e24452b5ff, type: 3}
+  - currency: 8
+    icon: {fileID: 21300000, guid: 141be5cd83c74584b99de17d7044515d, type: 3}
+  - currency: 9
+    icon: {fileID: 21300000, guid: 3dc15c4dcc38d9448b02b0ac5b8ba379, type: 3}
+  - currency: 10
+    icon: {fileID: 21300000, guid: cac353f4806bc1545b015aa408787360, type: 3}
+  - currency: 11
+    icon: {fileID: 21300000, guid: 85f46dd2883380641a77ac239ee5d0a9, type: 3}
+  - currency: 12
+    icon: {fileID: 21300000, guid: ce510cd1664f3ec49a0bee0034f940f3, type: 3}
