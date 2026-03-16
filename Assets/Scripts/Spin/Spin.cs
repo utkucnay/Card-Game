@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using Unity.VisualScripting;
 
 public class Spin : MonoBehaviour
 {
@@ -96,7 +97,10 @@ public class Spin : MonoBehaviour
                 spinRewards[i].CheckClearRewardOneTurn();
             }
 
-            spinRewards[currentStopIndex.Value].SetReward(newReward);
+            if (!spinRewards[currentStopIndex.Value].SpinReward.IsBomb())
+            {
+                spinRewards[currentStopIndex.Value].SetReward(newReward);
+            }
 
             if (increaseRewardAmount)
             {

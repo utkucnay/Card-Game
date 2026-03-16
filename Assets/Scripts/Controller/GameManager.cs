@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -18,12 +19,15 @@ public class GameManager : MonoBehaviour
     private int zoneLevel; 
 
     [SerializeField] private int[] seeds;
+    [SerializeField] private bool overrideSeed;
+    [SerializeField] private int seed;
 
     private IEnumerator Start()
     {
         zoneLevel = 1;
         tempInventory = new Inventory();
-        RandomManager.Instance.Initialize(seed: seeds[Random.Range(0, seeds.Length)], randomCount: 0);
+        int initialSeed = overrideSeed ? seed : seeds[Random.Range(0, seeds.Length)];
+        RandomManager.Instance.Initialize(seed: initialSeed, randomCount: 0);
         
         spinRewards = new LinkedList<ISpinReward>(spinRewardConfig.Rewards);
         
@@ -140,7 +144,8 @@ public class GameManager : MonoBehaviour
         
         zoneLevel++; 
 
-        HandleScrollRect(reward, turnsNotClaimed);
+        Sequence sequence = DOTween.Sequence();
+        HandleScrollRect(reward, turnsNotClaimed, sequence);
         uiController.UpdateVisuals(ResourceManager.Instance.GetZone(zoneLevel));
 
         uiController.ProgressIndicator.AnimateNext();
@@ -159,14 +164,42 @@ public class GameManager : MonoBehaviour
             uiController.ExitButton.gameObject.SetActive(true);
         }
 
-        var visualItem = uiController.RewardInfinityScrollRect.GetVisualItem(item => item.Data.rewardCurrency == reward.GetCurrency()?.ToString());
-        FlightManager.Instance.Flight(
+        sequence.AppendInterval(0.1f);
+
+        sequence.AppendCallback(() =>
+        {
+            RewardInfinityScrollVisualItem visualItem = GetVisualItem(reward);
+            if (visualItem == null)
+            {
+                Debug.LogWarning("Visual item for the reward not found in the scroll rect. Flight animation will not be played.");
+                return;
+            }
+            FlightManager.Instance.Flight(
                 uiController.Spin.FlightStartPoint.position, 
                 visualItem.RewardIconTransform.position, 
                 visualItem.RewardIconTransform.sizeDelta, 1.75f, Random.Range(3, 7), new Vector3(1, 1, 0) * 2f, reward.GetIcon());
+        });
     }
 
-    public void HandleScrollRect(ISpinReward reward, int turnsNotClaimed)
+    private RewardInfinityScrollVisualItem GetVisualItem(ISpinReward reward)
+    {
+        RewardInfinityScrollVisualItem visualItem = null;
+        if (reward.GetCurrency() != null)
+        {
+            visualItem = uiController.RewardInfinityScrollRect.GetVisualItem(item => item.Data.rewardCurrency == reward.GetCurrency()?.ToString());
+        }
+        if (reward.GetWeapon() != null)
+        {
+            visualItem = uiController.RewardInfinityScrollRect.GetVisualItem(item => item.Data.rewardCurrency == reward.GetWeapon()?.ToString());
+        }
+        if (reward.GetCase() != null)
+        {
+            visualItem = uiController.RewardInfinityScrollRect.GetVisualItem(item => item.Data.rewardCurrency == reward.GetCase()?.ToString());
+        }
+        return visualItem;
+    }
+
+    public void HandleScrollRect(ISpinReward reward, int turnsNotClaimed, Sequence sequence)
     {
         if (reward.GetCurrency() != null)
         {
@@ -174,7 +207,7 @@ public class GameManager : MonoBehaviour
             {
                 existingItem.TargetValue = tempInventory.GetCurrencyAmount(reward.GetCurrency());
                 uiController.RewardInfinityScrollRect.UpdateElements();
-                //uiController.RewardInfinityScrollRect.GoToItem(index);
+                sequence.Append(uiController.RewardInfinityScrollRect.GoToItem(index));
             }
             else
             {
@@ -185,6 +218,15 @@ public class GameManager : MonoBehaviour
                     TargetValue = tempInventory.GetCurrencyAmount(reward.GetCurrency())
                 };
                 uiController.RewardInfinityScrollRect.AddItem(newItem);
+                Tween tween = uiController.RewardInfinityScrollRect.GoToLastItem();
+                if (tween != null)
+                {
+                    sequence.Append(tween);
+                }
+                else
+                {
+                    Debug.LogWarning("Failed to scroll to the new currency reward item. It may not be visible in the scroll rect.");
+                }
             }
             return;
         }
@@ -195,7 +237,7 @@ public class GameManager : MonoBehaviour
             {
                 existingItem.TargetValue = tempInventory.GetCaseAmount(reward.GetCase());
                 uiController.RewardInfinityScrollRect.UpdateElements();
-                //uiController.RewardInfinityScrollRect.GoToItem(index);
+                sequence.Append(uiController.RewardInfinityScrollRect.GoToItem(index));
             }
             else
             {
@@ -206,6 +248,15 @@ public class GameManager : MonoBehaviour
                     TargetValue = tempInventory.GetCaseAmount(reward.GetCase())
                 };
                 uiController.RewardInfinityScrollRect.AddItem(newItem);
+                Tween tween = uiController.RewardInfinityScrollRect.GoToLastItem();
+                if (tween != null)
+                {
+                    sequence.Append(tween);
+                }
+                else
+                {
+                    Debug.LogWarning("Failed to scroll to the new case reward item. It may not be visible in the scroll rect.");
+                }
             }
             return;
         }
@@ -216,7 +267,7 @@ public class GameManager : MonoBehaviour
             {
                 existingItem.TargetValue = tempInventory.GetWeaponAmount(reward.GetWeapon());
                 uiController.RewardInfinityScrollRect.UpdateElements();
-                //uiController.RewardInfinityScrollRect.GoToItem(index);
+                sequence.Append(uiController.RewardInfinityScrollRect.GoToItem(index));
             }
             else
             {
@@ -227,6 +278,15 @@ public class GameManager : MonoBehaviour
                     TargetValue = tempInventory.GetWeaponAmount(reward.GetWeapon())
                 };
                 uiController.RewardInfinityScrollRect.AddItem(newItem);
+                Tween tween = uiController.RewardInfinityScrollRect.GoToLastItem();
+                if (tween != null)
+                {
+                    sequence.Append(tween);
+                }
+                else
+                {
+                    Debug.LogWarning("Failed to scroll to the new weapon reward item. It may not be visible in the scroll rect.");
+                }
             }
             return;
         }

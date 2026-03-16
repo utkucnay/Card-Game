@@ -175,12 +175,23 @@ public class InfiniteScrollRect<TVisual, TValue> : MonoBehaviour where TVisual :
         OnScrollValueChanged(Vector2.zero);
     }
 
-    public void GoToItem(int index, bool animate = true)
+    public Tween? GoToLastItem(bool animate = true)
+    {
+        if (values == null || values.Count == 0) return null;
+        return GoToItem(values.Count - 1, animate);
+    }
+
+    public Tween? GoToItem(int index, bool animate = true)
     {
         if (index < 0 || index >= values.Count)
         {
             Debug.LogError("Index out of range: " + index);
-            return;
+            return null;
+        }
+
+        if (IsItemVisible(index, 2))
+        {
+            return null; // No need to scroll if the item is already visible
         }
 
         if (animate)
@@ -188,12 +199,12 @@ public class InfiniteScrollRect<TVisual, TValue> : MonoBehaviour where TVisual :
             if (scrollRect.vertical)
             {
                 float targetY = index * (itemSize + itemSpacing) - scrollRect.viewport.rect.height / 2;
-                scrollRect.content.DOAnchorPosY(targetY, 0.5f).SetEase(Ease.OutCubic);
+                return scrollRect.content.DOAnchorPosY(targetY, 0.5f).SetEase(Ease.OutCubic);
             }
             else if (scrollRect.horizontal)
             {
                 float targetX = -index * (itemSize + itemSpacing) + scrollRect.viewport.rect.width / 2;
-                scrollRect.content.DOAnchorPosX(targetX, 0.5f).SetEase(Ease.OutCubic);
+                return scrollRect.content.DOAnchorPosX(targetX, 0.5f).SetEase(Ease.OutCubic);
             }
         }
         else
@@ -209,9 +220,10 @@ public class InfiniteScrollRect<TVisual, TValue> : MonoBehaviour where TVisual :
                 scrollRect.content.anchoredPosition = new Vector2(targetX, scrollRect.content.anchoredPosition.y);
             }
         }
+        return null;
     }
 
-    public bool IsItemVisible(int index)
+    public bool IsItemVisible(int index, int offset = 0)
     {
         if (index < 0 || index >= values.Count)
         {
@@ -222,7 +234,7 @@ public class InfiniteScrollRect<TVisual, TValue> : MonoBehaviour where TVisual :
         int firstVisibleIndex = GetFirstVisibleIndex();
         int visibleItemCount = GetVisibleItemCount();
 
-        return index >= firstVisibleIndex && index < firstVisibleIndex + visibleItemCount;
+        return index >= firstVisibleIndex + offset && index < firstVisibleIndex + visibleItemCount - offset;
     }
 
     private void UpdateContentSize()
